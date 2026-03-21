@@ -1,10 +1,7 @@
 package dev.rafex.ether.ai.core.message;
 
 public enum AiMessageRole {
-    SYSTEM("system"),
-    USER("user"),
-    ASSISTANT("assistant"),
-    TOOL("tool");
+    SYSTEM("system"), USER("user"), ASSISTANT("assistant"), TOOL("tool");
 
     private final String wireValue;
 

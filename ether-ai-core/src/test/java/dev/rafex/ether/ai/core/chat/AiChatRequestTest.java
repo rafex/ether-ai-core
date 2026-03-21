@@ -25,8 +25,8 @@ class AiChatRequestTest {
 
     @Test
     void shouldRejectInvalidArguments() {
-        assertThrows(IllegalArgumentException.class, () -> new AiChatRequest("", List.of(AiMessage.user("hola")), null,
-                null));
+        assertThrows(IllegalArgumentException.class,
+                () -> new AiChatRequest("", List.of(AiMessage.user("hola")), null, null));
         assertThrows(IllegalArgumentException.class, () -> new AiChatRequest("model", List.of(), null, null));
         assertThrows(IllegalArgumentException.class,
                 () -> new AiChatRequest("model", List.of(AiMessage.user("hola")), 3.0d, null));
