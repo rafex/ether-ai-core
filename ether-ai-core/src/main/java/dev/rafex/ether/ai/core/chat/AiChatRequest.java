@@ -6,8 +6,27 @@ import java.util.Objects;
 
 import dev.rafex.ether.ai.core.message.AiMessage;
 
+/**
+ * Solicitud para generar respuestas de chat usando un modelo de IA.
+ *
+ * @param model            El identificador del modelo a utilizar.
+ * @param messages         La lista de mensajes en la conversación.
+ * @param temperature      La temperatura para controlar la aleatoriedad (0.0 - 2.0).
+ * @param maxOutputTokens  El número máximo de tokens en la respuesta.
+ */
 public record AiChatRequest(String model, List<AiMessage> messages, Double temperature, Integer maxOutputTokens) {
 
+    /**
+     * Crea una nueva solicitud y valida los parámetros.
+     *
+     * @param model            El identificador del modelo a utilizar.
+     * @param messages         La lista de mensajes en la conversación.
+     * @param temperature      La temperatura para controlar la aleatoriedad (0.0 - 2.0).
+     * @param maxOutputTokens  El número máximo de tokens en la respuesta.
+     * @throws NullPointerException     si el modelo o los mensajes son nulos.
+     * @throws IllegalArgumentException si el modelo está en blanco, los mensajes están vacíos,
+     *                                  o los valores de temperatura/tokens están fuera de rango.
+     */
     public AiChatRequest {
         Objects.requireNonNull(model, "model");
         if (model.isBlank()) {
@@ -26,6 +45,13 @@ public record AiChatRequest(String model, List<AiMessage> messages, Double tempe
         }
     }
 
+    /**
+     * Crea una solicitud con los valores por defecto para temperatura y tokens máximos.
+     *
+     * @param model    El identificador del modelo a utilizar.
+     * @param messages Los mensajes de la conversación.
+     * @return La solicitud creada.
+     */
     public static AiChatRequest of(final String model, final AiMessage... messages) {
         return new AiChatRequest(model, Arrays.asList(messages), null, null);
     }
